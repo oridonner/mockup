@@ -38,9 +38,7 @@ const App = () => {
 
   const handleForbidden = async () => {
     console.log();
-    const [err, { data }] = await to(
-      axios.get("http://faker:5001/api/faker/health")
-    );
+    const [err, { data }] = await to(axios.get("/api/faker/forbidden"));
 
     console.log("HERE", { err, data });
 

@@ -8,6 +8,7 @@ services:
       - /var/app/server/service/dist
       - /var/app/server/service/node_modules
       - ./services/auth/src:/var/app/server/service/src
+      - ./services/auth/logs:/var/app/server/service/logs
     ports:
       - 5000:5000
     env_file:
@@ -30,6 +31,7 @@ services:
       - /var/app/server/service/dist
       - /var/app/server/service/node_modules
       - ./services/faker/src:/var/app/server/service/src
+      - ./services/faker/logs:/var/app/server/service/logs
     env_file:
       - .env
     networks:
