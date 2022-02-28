@@ -58,7 +58,9 @@ const isLoggedIn = () => (req: Request, res: Response, next: NextFunction) => {
   return next();
 };
 
-const proxies: [[string, number]] = [['faker', 5000]];
+const proxies: [[string, number, string]] = [
+  [process.env.FAKER_SERVICE_HOST ?? 'faker', 5000, 'faker'],
+];
 
 export const useProxies = (app: Application): void => {
   console.log(`[PROXY] proxies: ${JSON.stringify(proxies)} (useProxies)`);
@@ -70,7 +72,10 @@ export const useProxies = (app: Application): void => {
   }
 };
 
-const useProxy = (app: Application, [domain, port]: [string, number]) => {
+const useProxy = (
+  app: Application,
+  [domain, port, endpoint]: [string, number, string]
+) => {
   const target = `http://${domain}:${port}/`;
 
   console.log('[PROXY] target is', `${target}`);
@@ -81,5 +86,5 @@ const useProxy = (app: Application, [domain, port]: [string, number]) => {
     target,
   });
 
-  app.use(`${baseApi}/${domain}`, apiProxy);
+  app.use(`${baseApi}/${endpoint}`, apiProxy);
 };
