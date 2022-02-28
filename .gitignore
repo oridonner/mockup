@@ -1,0 +1,30 @@
+# Environment files
+.env
+*.env
+
+internals/data/secrets
+internals/.aws
+*.key
+*.key.pub
+
+# Node artifact files, logs, lock files etc.
+node_modules/
+**/*/node_modules/
+dist/
+unused/
+**/*/dist/
+*.log
+./logs/**
+yarn.lock
+**/*/yarn.lock
+package-lock.json
+**/*/package-lock.json
+**/*/.cache/**/*
+**/*.crt
+**/*.cert
+**/*.pem
+
+# client/admin
+# internals/data/mongo/**/*.json
+yarn.lock
+    

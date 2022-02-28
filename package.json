@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "auth": "yarn --cwd services/auth",
+    "faker": "yarn --cwd services/faker",
+    "client": "yarn --cwd clients/front",
+    "compose:dev": "yarn compose:down && docker-compose -f docker-compose-dev.yml up",
+    "compose:dev:build": "yarn compose:down && docker-compose -f docker-compose-dev.yml up --build",
+    "compose:down": "docker-compose -f docker-compose-dev.yml down -v --remove-orphans"
+  }
+}

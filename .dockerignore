@@ -1,0 +1,6 @@
+.git
+**/*/.git
+yarn-error.log
+/logs
+/dist
+/node_modules
