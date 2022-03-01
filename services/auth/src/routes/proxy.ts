@@ -5,6 +5,7 @@ import { Request, Response, Application, NextFunction } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 import { users } from '../mockData';
+import { Status } from '../interfaces';
 
 const baseApi = '/api';
 const secret = process.env.SECRET ?? '';
@@ -21,27 +22,27 @@ const isLoggedIn = () => (req: Request, res: Response, next: NextFunction) => {
     };
 
     if (!id) {
-      res.send({
-        error: false,
-        status: 200,
+      res.status(Status.UNAUTHORIZED).send({
+        error: true,
+        status: 401,
         message: 'Please authenticate',
       });
       return;
     }
 
     if (!users.filter((user) => user.id === id).length) {
-      res.send({
-        error: false,
-        status: 200,
+      res.status(Status.UNAUTHORIZED).send({
+        error: true,
+        status: 401,
         message: 'Please authenticate',
       });
       return;
     }
 
     if (!users.filter((user) => user.email === username).length) {
-      res.send({
-        error: false,
-        status: 200,
+      res.status(Status.UNAUTHORIZED).send({
+        error: true,
+        status: 401,
         message: 'Please authenticate',
       });
       return;
@@ -49,9 +50,9 @@ const isLoggedIn = () => (req: Request, res: Response, next: NextFunction) => {
 
     return next();
   } catch (err) {
-    res.send({
-      error: false,
-      status: 200,
+    res.status(Status.UNAUTHORIZED).send({
+      error: true,
+      status: 401,
       message: 'Please authenticate',
     });
   }
