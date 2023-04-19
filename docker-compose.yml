@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   auth:
-    image: test314zdes/mock-defender:auth
+    image: gcr.io/optimal-tide-293517/mock-defender:auth
     ports:
       - 5000:5000
     env_file:
@@ -17,7 +17,7 @@ services:
       - auth
     ports:
       - 5001:5000
-    image: test314zdes/mock-defender:faker
+    image: gcr.io/optimal-tide-293517/mock-defender:faker
     env_file:
       - .env
     networks:
@@ -32,7 +32,7 @@ services:
       - auth
     networks:
       - default_bd
-    image: test314zdes/mock-defender:client
+    image: gcr.io/optimal-tide-293517/mock-defender:client
     environment:
       - SERVICE_PORT=3000
       - SERVICE_NAME=client
